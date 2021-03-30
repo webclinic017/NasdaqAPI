@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from nasdaq.base import Base
 
@@ -17,7 +17,7 @@ class Quote(Base):
     def get_dividends(self):
         return self._endpoint(endpoint='dividends', params={'assetclass': self._assetclass})
 
-    def get_history(self, fromdate: datetime = None, todate: datetime = None):
+    def get_history(self, fromdate: datetime = datetime.today(), todate: datetime = datetime.today() - timedelta(days=365)):
         params = {'assetclass': self._assetclass,
                   'fromdate': fromdate.date().strftime('%Y-%m-%d'),
                   'todate': todate.date().strftime('%Y-%m-%d'),

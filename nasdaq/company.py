@@ -1,11 +1,14 @@
 from enum import Enum
 
-from nasdaq.base import Base
+from .base import Base
 
 
 class Frequency(Enum):
     ANNUAL = 1,
     QUARTERLY = 2,
+
+class HoldingType(Enum):
+    pass
 
 
 class Company(Base):
@@ -27,3 +30,13 @@ class Company(Base):
 
     def get_earnings_surprise(self):
         return self._endpoint('earnings-surprise')
+
+    def get_institutional_holdings(self, limit=15, holding_type='TOTAL', sort_column='marketValue', sort_order='DESC'):
+        params = {
+            'limit': limit,
+            'type': holding_type,
+            'sortColumn': sort_column,
+            'marketValue': sort_order,
+        }
+        return self._endpoint('institutional-holdings',
+                              params=params)
