@@ -2,7 +2,7 @@ import nasdaq as nd
 from nasdaq import Frequency # Annual or quarterly, used in financials data
 
 stock = nd.Stock('MSFT')
-
+print(stock.quote.get_realtime_trades(10))
 print(stock.quote.get_info())
 print(stock.quote.get_dividends())
 

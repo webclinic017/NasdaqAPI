@@ -6,10 +6,10 @@ class Analyst(Base):
         super().__init__(ticker=ticker, prefix='analyst')
 
     def get_estimate_momentum(self):
-        return self._endpoint('estimate-momentum')
+        return self.endpoint('estimate-momentum')
 
     def get_earnings_forecast(self):
-        return self._endpoint('earnings-forecast')
+        return self.endpoint('earnings-forecast')
 
     def get_peg_ratio(self):
-        return self._endpoint('peg-ratio')
+        return self.endpoint('peg-ratio')
